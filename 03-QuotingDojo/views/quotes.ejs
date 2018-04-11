@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QuotingDojo - List of Quotes</title>
+    <link rel="stylesheet" href="styles.css">
+<body>
+    <h1>Here are the awesome quotes!</h1>
+    <% for (all of all_quotes) { %>
+        <p><%= all.quote_msg %></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= all.quote_name %> at <%= all.createdAt %></p>
+        <hr>
+    <% } %>
+    <br>
+    <a href="/"><button>Go back!</button></a>
+</body>
+</html>
