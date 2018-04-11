@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mongoose</title>
+    <link rel="stylesheet" href="styles.css">
+<body>
+    <h1>Mongoose</h1>
+    <form action="/users" method='post'>
+        <input type="text" name="name" id="name" placeholder="name">
+        <input type="number" name="age" id="age" placeholder="age">
+        <input type="submit" value='submit'>
+    </form>
+    <br>
+    <h1>All Users info:</h1>
+    <% for (user of users) { %>
+        <p><%= user %></p>
+    <% } %>
+</body>
+</html>
