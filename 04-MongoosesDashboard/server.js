@@ -19,6 +19,7 @@ app.set('view engine', 'ejs');
 // Setting our Mongoose
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/pet');
+mongoose.connection.on('connected', () => console.log('Connected to mongodb'));
 
 // Setting our Mongoose Schemas
 var PetSchema = new mongoose.Schema({
@@ -63,19 +64,24 @@ app.get('/pets/new', function(req, res) {
 app.get('/pets/:id', function(req, res) {
     console.log("*** GET DATA @ /pets/:id");
     console.log('ID:',req.params.id);
-    let tmp = {};
     Pet.findOne({ _id: req.params.id }, function(err, mypet) {
         if (err) {
             console.log('error @ /pets/:id');
-            // res.redirect('/');
         } else {
             console.log('successfully @ /pets/:id');
             console.log(mypet);
-            // res.render('showOne', { mypet });
-            
+            res.render('showOne', { mypet });
         }
-        res.render('showOne', { mypet: mypet });
     })
+    // Pet.findOne({ _id: req.params.id })
+    //     .then( mypet => {
+    //         console.log('successfully @ /pets/:id');
+    //         console.log(mypet);
+    //         res.render('showOne', { mypet });
+    //     })
+    //     .catch(err => {
+    //         console.log('error @ /pets/:id', err);
+    //     });
 });
 
 app.post('/pets', function(req, res) {
@@ -83,7 +89,7 @@ app.post('/pets', function(req, res) {
     var pet = new Pet(req.body);
     pet.save(function(err) {
         if (err) {
-            console.log('error @ /pets');
+            console.log('error @ /pets', err);
         } else { 
             console.log('successfully @ /pets');
             console.log(req.body);
@@ -97,7 +103,7 @@ app.get('/pets/destroy/:id', function(req, res) {
     console.log('ID:',req.params.id);
     Pet.remove({ _id: req.params.id }, function(err, mypet) {
         if (err) {
-            console.log('error @ /pets/destroy/:id');
+            console.log('error @ /pets/destroy/:id', err);
         } else {
             console.log('successfully @ /pets/destroy/:id');
             console.log(mypet);
@@ -111,14 +117,12 @@ app.get('/pets/edit/:id', function(req, res) {
     console.log('ID:',req.params.id);
     Pet.findOne({ _id: req.params.id }, function(err, mypet) {
         if (err) {
-            console.log('error @ /pets/edit/:id');
-            // res.redirect('/');
+            console.log('error @ /pets/edit/:id', err);
         } else {
             console.log('successfully @ /pets/edit/:id');
             console.log(mypet);
-            // res.render('showOne', { mypet });
+            res.render('edit', { mypet });
         }
-        res.render('edit', { mypet });
     })
 });
 
@@ -126,16 +130,18 @@ app.post('/pets/:id', function(req, res) {
     console.log("*** POST DATA @ /pets/:id");
     console.log('ID:',req.params.id);
     console.log('Data:',req.body);
-    Pet.update({ _id: req.params.id }, function(err, mypet) {
-        mypet.name = req.body.name;
-        mypet.age = req.body.age;
+    Pet.update({ _id: req.params.id }, 
+        {  name: req.body.name, age: req.body.age }, 
+        {upsert: true}, function(err, mypet) {
+        // mypet.name = req.body.name;
+        // mypet.age = req.body.age;
         if (err) {
-            console.log('error @ /pets/:id');
+            console.log('error @ /pets/:id', err);
         } else {
             console.log('successfully @ /pets:id');
             console.log(mypet);
+            res.redirect('/');
         }
-        res.redirect('/');
     })
 });
 
