@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>Mongooses Dashboard - My Pets</title>
+<body>
+    <h1>My Pet info:</h1>
+    <p><%= mypet.name %> at <%= mypet.age %> year(s) old  --> ID: <%= mypet._id %></p>
+    <p>Created on <%= mypet.createdAt %></p>
+    <p>Last updated on <%= mypet.updatedAt %></p>
+    <br>
+    <a href="/"><button>Back to home page</button></a>
+</body>
+</html>
