@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mongoose - Login Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div>
+            <h1>Welcome! </h1>
+            <p></p>
+        </div>
+        <div id="flash_message">
+            <% if(typeof(errors) != 'undefined' ) { %>
+                <li><%= errors %></li>
+            <% } %>
+        </div>
+        <div id="top-left">
+            <fieldset>
+                <legend><h2>Registration Form</h2></legend>
+                <form action="/registration" method="post">
+                    <div class="row">
+                        <div class="col-left">Email:</div>
+                        <div class="col-right">
+                            <input type="text" name="form_email" id="form_email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left">First Name:</div>
+                        <div class="col-right">
+                            <input type="text" name="form_namefirst" id="form_namefirst">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left">Last Name:</div>
+                        <div class="col-right">
+                            <input type="text" name="form_namelast" id="form_namelast">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left">Password:</div>
+                        <div class="col-right">
+                            <input type="password" name="form_password" id="form_password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left">Confirm Password:</div>
+                        <div class="col-right">
+                            <input type="password" name="form_password_confirm" id="form_password_confirm">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left">
+                            Date of Birth:
+                        </div>
+                        <div class="col-right">
+                            <input type="date" name="form_birthday" id="form_birthday">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left"></div>
+                        <div class="col-right">
+                            <input type="submit" value="Register">
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+        <div id="top-right">
+            <fieldset>
+                <legend><h2>Login Form</h2></legend>
+                <form action="/login" method="post">
+                    <div class="row">
+                        <div class="col-left">Email:</div>
+                        <div class="col-right">
+                            <input type="text" name="login_email" id="login_email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left">Password:</div>
+                        <div class="col-right">
+                            <input type="password" name="login_password" id="login_password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-left"></div>
+                        <div class="col-right">
+                            <input type="submit" value="Login">
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</body>
+</html>

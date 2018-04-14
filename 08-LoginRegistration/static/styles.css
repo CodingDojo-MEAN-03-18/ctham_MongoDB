@@ -1,0 +1,35 @@
+/* * {
+    outline: 1px dotted red;
+} */
+#container {
+    width: 800px;
+    margin: 0px auto;
+}
+.row {
+    display: inline-block;
+    width: 100%
+}
+.col-left {
+    width: 25%;
+    margin-top: 6px;
+    display: inline-block;
+}
+.col-right {
+    width: 70%;
+    margin-top: 6px;
+    display: inline-block;
+}
+.flashes {
+    /* margin: 0px; */
+    margin: 0px 0px 10px;
+}
+#flash_message {
+    color: red;
+    margin: 0px;
+}
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}

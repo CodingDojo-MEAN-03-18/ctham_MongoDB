@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Registration Page</title>
+     <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div class="row">
+            <h1>Welcome to Dashboard</h1>
+            <h3>Hello, you have successfull registrated (or logged in)!</h3>
+            <p></p>
+            <div id="list">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Birthday</th>
+                        <th>Password</th>
+                        <th>Created At / Updated At</th>
+                    </tr>
+                    <% for (list of all_users) { %>
+                    <tr>
+                        <td><a href="/delete/<%= list._id %>"></a><button>Delete</button></td>
+                        <td><%= list.user_email %></td>
+                        <td><%= list.user_namefirst %> <%= list.user_namelast %></td>
+                        <td><%= list.user_birthday.toDateString() %></td>
+                        <td><%= list.user_password %></td>
+                        <td>
+                            <li><%= list.createdAt %></li>
+                            <li><%= list.updatedAt %></li>
+                        </td>
+                    </tr>
+                    <% } %>
+                </table>
+            </div>
+            <p></p>
+            <a href="/logoff"><button>Logoff</button></a>
+        </div>
+    </div>
+</body>
+</html>
