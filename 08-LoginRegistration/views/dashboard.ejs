@@ -11,28 +11,38 @@
     <div id="container">
         <div class="row">
             <h1>Welcome to Dashboard</h1>
-            <h3>Hello, you have successfull registrated (or logged in)!</h3>
+            <h3>Hello <%= name %>, you have successfull registrated (or logged in)!</h3>
             <p></p>
+            <div id="flash_message">
+                <% if(typeof(errors) != 'undefined' ) { %>
+                    <li><%= errors %></li>
+                <% } %>
+            </div>
             <div id="list">
                 <table>
                     <tr>
-                        <th>ID</th>
+                        <th>Action</th>
                         <th>Email</th>
                         <th>Name</th>
                         <th>Birthday</th>
-                        <th>Password</th>
+                        <!-- <th>Password</th> -->
                         <th>Created At / Updated At</th>
                     </tr>
                     <% for (list of all_users) { %>
                     <tr>
-                        <td><a href="/delete/<%= list._id %>"></a><button>Delete</button></td>
+                        <% if (ID == list._id) { %>
+                            <td></td>
+                        <% } else { %>
+                            <td><form action="/delete/<%= list._id %>"><button>Delete</button></form></td>
+                        <% } %>
                         <td><%= list.user_email %></td>
                         <td><%= list.user_namefirst %> <%= list.user_namelast %></td>
-                        <td><%= list.user_birthday.toDateString() %></td>
-                        <td><%= list.user_password %></td>
+                        <!-- <td><%= list.user_birthday.toDateString() %></td> -->
+                        <td><%= list.user_birthday.toISOString() %></td>
+                        <!-- <td><%= list.user_password %></td> -->
                         <td>
-                            <li><%= list.createdAt %></li>
-                            <li><%= list.updatedAt %></li>
+                            <li><%= list.createdAt.toISOString() %></li>
+                            <li><%= list.updatedAt.toISOString() %></li>
                         </td>
                     </tr>
                     <% } %>
